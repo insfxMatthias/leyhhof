@@ -1,0 +1,14 @@
+---
+/**
+ * Einheitliche Bildausgabe: AVIF + WebP mit JPEG-Fallback, responsive srcset/sizes
+ * aus astro:assets. Breakpoints stehen zentral in astro.config.mjs.
+ * Wichtig: Ohne fallbackFormat würde Astro für WebP/AVIF-Quellen PNG erzeugen.
+ */
+import { Picture } from 'astro:assets';
+import type { ComponentProps } from 'astro/types';
+
+type Props = Omit<ComponentProps<typeof Picture>, 'formats' | 'fallbackFormat'>;
+const props = Astro.props;
+---
+
+<Picture {...props} formats={['avif', 'webp']} fallbackFormat="jpg" />

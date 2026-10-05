@@ -6,8 +6,12 @@
   "title": "Schulklassen - Unsere Angebote | Erlebnisbauernhof Leyh",
   "description": "Unterricht auf dem Bauernhof: Im \"Klassenzimmer auf dem Bauernhof\" erfahren Kinder Wissenswertes rund um unsere Nahrungskette, die Landwirtschaft, Energiegewinnung etc. Kosten 160,- € für 4 Std. Schulklassenausflüge der 2., 3. und 4. Jahrgangsstufe von Grundschulklassen und alle Jahrgangsstufen der Förderschule sind kostenlos.",
   "bild": {
-    "src": "../../images/angebot-schulklassen.jpg",
-    "alt": "Kinder im Gemüsegarten"
+    "src": "../../images/angebot-schulklassen.webp",
+    "alt": "Kinder ernten im Gemüsegarten zwischen hohen Pflanzen"
+  },
+  "heroBild": {
+    "src": "../../images/kinder-stallarbeit.webp",
+    "alt": "Kinder helfen mit Eimern bei der Stallarbeit"
   },
   "teaser": "Im \"Klassenzimmer auf dem Bauernhof\" erfahren Kinder Wissenswertes rund um unsere Nahrungskette, die Landwirtschaft, Energiegewinnung etc.",
   "h1": "Unterricht auf dem Bauernhof",

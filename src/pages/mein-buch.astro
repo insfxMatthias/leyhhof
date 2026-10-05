@@ -1,6 +1,6 @@
 ---
 import { getEntry, render } from 'astro:content';
-import { Picture } from 'astro:assets';
+import Foto from '../components/Foto.astro';
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Button from '../components/Button.astro';
@@ -24,10 +24,9 @@ const kauf = seite.data.hero.buttons[0];
     <div class="grid gap-10 md:grid-cols-[16rem_minmax(0,1fr)] lg:grid-cols-[20rem_minmax(0,1fr)]">
       <aside>
         <div class="md:sticky md:top-24">
-          <Picture
+          <Foto
             src={seite.data.cover.src}
             alt={seite.data.cover.alt}
-            formats={['avif', 'webp']}
             width={640}
             class="mx-auto w-full max-w-xs rounded-karte shadow-karte md:max-w-none"
           />

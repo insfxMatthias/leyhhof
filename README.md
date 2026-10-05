@@ -41,29 +41,38 @@ installiert, kann der Pfad per `PW_CHROMIUM_PATH=/pfad/zu/chrome` gesetzt werden
 
 Die Schemas (Pflichtfelder) stehen in `src/content.config.ts`; ein Tippfehler im Feldnamen bricht den Build mit klarer Meldung.
 
-## Bilder einsetzen
+## Bilder
 
-Alle Fotos sind aktuell **farbige Platzhalter** (erzeugt von `scripts/platzhalter.mjs`).
-Sobald die Originale aus Jimdo exportiert sind: Datei in `src/images/` mit gleichem Namen ersetzen,
-`npm run build` – AVIF/WebP und `srcset` entstehen automatisch.
+Die Fotos liegen in `src/images/` und werden beim Build automatisch zu AVIF/WebP mit JPEG-Fallback
+und `srcset` verarbeitet (Komponente `src/components/Foto.astro`, Breakpoints in `astro.config.mjs`).
+Neues Foto: Datei ersetzen oder in der Content-Datei referenzieren, `npm run build`.
 
-| Datei | Motiv (aus inhalte.md) |
+| Datei | Verwendung |
 |---|---|
-| `src/images/hero-home.jpg` | Home-Hero: Kinder auf dem Trettraktor (laut Konzept nicht das Luftbild) |
-| `src/images/kinder-trettraktor.jpg` | Home-Karte „Moderne Landwirtschaft“: Kinder auf Trettraktor |
-| `src/images/ute-kaelbchen.jpg` | Home-Karte „Mehr Generationen Betrieb“: Ute Leyh mit Kälbchen im Iglu |
-| `src/images/angebot-bauernhof.jpg` | Kachel Bauernhof: Oldtimer-Traktor mit Kindern |
-| `src/images/angebot-ponys.jpg` | Kachel Ponys: Kindergruppe auf Strohballen |
-| `src/images/angebot-schulklassen.jpg` | Kachel Schulklassen: Kinder im Gemüsegarten |
-| `src/images/hero-landwirtschaft.jpg` | Landwirtschaft-Hero: Traktor mit Ladewagen |
-| `src/images/luftbild-hof.jpg` | Landwirtschaft, unten: Luftbild des Hofs |
+| `hero-home.webp` | Home-Hero: Kinder auf dem Trettraktor (auch Quelle für `public/og.jpg`, siehe `scripts/og.mjs`) |
+| `kuhstall.webp` | Home-Karte „Moderne Landwirtschaft“ (statt des zweiten Trettraktor-Fotos der alten Seite) |
+| `ute-kaelbchen.webp` | Home-Karte „Mehr Generationen Betrieb“ |
+| `angebot-bauernhof.webp` | Kachel Bauernhof (Oldtimer-Traktor) |
+| `angebot-ponys.webp` | Kachel + Kopfbild Ponys (Kinder auf Strohballen) |
+| `angebot-schulklassen.webp` | Kachel Schulklassen (Gemüsegarten) |
+| `kuh-streicheln.webp` | Kopfbild Bauernhof-Seite, zweites Bild auf „Moderne Landwirtschaft“ |
+| `kinder-stallarbeit.webp` | Kopfbild Schulklassen-Seite |
+| `hero-landwirtschaft.webp` | Kopfbild „Moderne Landwirtschaft“ (Kinder am Futtergitter) |
+| `kinder-basteln.webp`, `ponyreiten.avif` | Karten Bauernhofgeburtstag / inkl. Ponyreiten |
+| `pony.avif`, `indianer-wald.avif`, `einhorn-pony.avif` | Karten Pferde-, Indianer-, Einhorngeburtstag |
+
+Noch **Platzhalter** (erzeugt von `scripts/platzhalter.mjs`, Ersatz mit gleichem Dateinamen):
+
+| Datei | Motiv |
+|---|---|
 | `src/images/hero-buch.jpg` | Buch-Hero: Frau mit Blumenkorb |
 | `src/images/buchcover.jpg` | Buchcover „Meine Liebe zum Land“ (Rechte beim Verlag prüfen) |
-| `src/icons/logo.svg` + `public/favicon.svg` | Logo Kuh mit Sonnenblume (aktuell selbst gezeichneter Platzhalter) |
-| `public/og.jpg` | Vorschaubild für WhatsApp/Facebook (1200×630), z. B. aus dem Hero-Foto |
+| `src/icons/logo.svg` + `public/favicon.svg` | Logo Kuh mit Sonnenblume (aktuell selbst gezeichnet) |
 | `public/karte.png` | Anfahrtskarte: `node scripts/karte.mjs` holt einen OpenStreetMap-Ausschnitt (braucht Internet) |
 
-Alt-Texte stehen bei den Bildern in den Content-Dateien und sollten zum echten Foto passen.
+Noch nicht vorhanden, aber im Konzept vorgesehen: Luftbild des Hofs und Traktor mit Ladewagen für
+„Moderne Landwirtschaft“. Wenn exportiert, in `src/content/seiten/landwirtschaft.md` eintragen.
+Alt-Texte stehen bei den Bildern in den Content-Dateien.
 
 ## Vor dem Launch klären (aus inhalte.md / konzept.md)
 
@@ -86,7 +95,7 @@ Alt-Texte stehen bei den Bildern in den Content-Dateien und sollten zum echten F
 
 ```
 src/content/        Texte (seiten/*.md, angebote/*.json, hof.json)
-src/components/     Hero, AngebotKachel, AngebotKarte, Infobox, Kontaktbox, Zahlen, WellenDivider, Nav, Footer, Button, Icon, Preisschild
+src/components/     Hero, Foto, AngebotKachel, AngebotKarte, Infobox, Kontaktbox, Zahlen, WellenDivider, Nav, Footer, Button, Icon, Preisschild
 src/layouts/        Base.astro (Head, SEO, JSON-LD, Nav, Footer), Angebot.astro (Template der drei Angebotsseiten)
 src/pages/          spiegelt die URLs (Trailing Slash wie bei Jimdo)
 src/icons/          handgezeichnete SVG-Icons (currentColor, 2px Linie)
@@ -94,7 +103,7 @@ src/images/         Quellbilder, werden von astro:assets optimiert
 src/styles/         global.css – Design-Tokens (Farben, Fraunces) als Tailwind-Theme
 public/             robots.txt, favicon.svg, og.jpg, karte.png
 tests/              Playwright + axe
-scripts/            platzhalter.mjs, karte.mjs, lighthouse.mjs, screenshot.mjs
+scripts/            platzhalter.mjs, og.mjs, karte.mjs, lighthouse.mjs, screenshot.mjs
 Caddyfile           Webserver inkl. 301-Weiterleitungen für /widerruf/ und /cookie-einstellungen/
 ```
 

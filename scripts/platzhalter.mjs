@@ -1,5 +1,5 @@
-// Erzeugt farbige Platzhalter-Bilder (JPEG/PNG) für alle Fotos, die noch aus
-// Jimdo exportiert werden müssen (Liste: inhalte.md). Sobald das echte Foto
+// Erzeugt farbige Platzhalter-Bilder (JPEG/PNG) für die Fotos, die noch fehlen
+// (Buch-Hero, Buchcover, Anfahrtskarte). Echte Fotos liegen in src/images/. Sobald das echte Foto
 // vorliegt, einfach die Datei in src/images/ mit gleichem Namen ersetzen.
 //
 //   node scripts/platzhalter.mjs           erzeugt nur fehlende Dateien
@@ -14,17 +14,8 @@ const FARBEN = {
 };
 
 const BILDER = [
-  { datei: 'src/images/hero-home.jpg', b: 1600, h: 1000, titel: 'Home-Hero', motiv: 'Kinder auf dem Trettraktor', ton: 'wiese' },
-  { datei: 'src/images/kinder-trettraktor.jpg', b: 1200, h: 900, titel: 'Home-Karte', motiv: 'Kinder auf Trettraktor', ton: 'sonne' },
-  { datei: 'src/images/ute-kaelbchen.jpg', b: 1200, h: 900, titel: 'Home-Karte', motiv: 'Ute Leyh mit Kälbchen im Iglu', ton: 'stroh' },
-  { datei: 'src/images/angebot-bauernhof.jpg', b: 1200, h: 900, titel: 'Angebote-Kachel', motiv: 'Oldtimer-Traktor mit Kindern', ton: 'wiese' },
-  { datei: 'src/images/angebot-ponys.jpg', b: 1200, h: 900, titel: 'Angebote-Kachel', motiv: 'Kindergruppe auf Strohballen', ton: 'sonne' },
-  { datei: 'src/images/angebot-schulklassen.jpg', b: 1200, h: 900, titel: 'Angebote-Kachel', motiv: 'Kinder im Gemüsegarten', ton: 'himmel' },
-  { datei: 'src/images/hero-landwirtschaft.jpg', b: 1600, h: 1000, titel: 'Landwirtschaft-Hero', motiv: 'Traktor mit Ladewagen', ton: 'himmel' },
-  { datei: 'src/images/luftbild-hof.jpg', b: 1600, h: 1000, titel: 'Landwirtschaft', motiv: 'Luftbild des Hofs', ton: 'wiese' },
   { datei: 'src/images/hero-buch.jpg', b: 1600, h: 1000, titel: 'Buch-Hero', motiv: 'Frau mit Blumenkorb', ton: 'sonne' },
   { datei: 'src/images/buchcover.jpg', b: 800, h: 1200, titel: 'Buchcover', motiv: '„Meine Liebe zum Land“ (Rechte prüfen)', ton: 'stroh' },
-  { datei: 'public/og.jpg', b: 1200, h: 630, titel: 'Open-Graph-Bild', motiv: 'Erlebnisbauernhof Leyh', ton: 'wiese', og: true },
   { datei: 'public/karte.png', b: 1200, h: 800, titel: 'Anfahrtskarte', motiv: 'OpenStreetMap-Ausschnitt (scripts/karte.mjs)', ton: 'karte' },
 ];
 

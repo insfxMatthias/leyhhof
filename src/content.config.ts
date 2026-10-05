@@ -64,6 +64,8 @@ const angebote = defineCollection({
       title: z.string(),
       description: z.string(),
       bild: bild(image),
+      /** Optionales Kopfbild der Seite; ohne Angabe wird `bild` (die Kachel) verwendet. */
+      heroBild: bild(image).optional(),
       teaser: z.string(),
       h1: z.string(),
       untertitel: z.string().optional(),
@@ -74,6 +76,7 @@ const angebote = defineCollection({
             icon: z.string(),
             titel: z.string(),
             text: z.string(),
+            bild: bild(image).optional(),
           }),
         )
         .default([]),

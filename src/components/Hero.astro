@@ -3,7 +3,7 @@
  * Großes Foto, nicht abgedunkelt. Text steht in einer hellen Karte,
  * die auf Desktop unten links über das Bild ragt, mobil darunter.
  */
-import { Picture } from 'astro:assets';
+import Foto from './Foto.astro';
 import Button from './Button.astro';
 
 interface Props {
@@ -23,14 +23,13 @@ const kickerFarbe = { wiese: 'text-wiese-dunkel', sonne: 'text-[#9a6d00]', himme
 
 <section class="mx-auto max-w-6xl px-4 pt-4 sm:px-6 sm:pt-6" aria-labelledby="hero-titel">
   <div class="relative">
-    <Picture
+    <Foto
       src={bild}
       alt={alt}
-      formats={['avif', 'webp']}
       loading="eager"
       fetchpriority="high"
       width={1600}
-      class:list={['w-full rounded-bild object-cover', klein ? 'aspect-[3/1.4] md:aspect-[3/1]' : 'aspect-[4/3] md:aspect-[16/8]']}
+      class:list={['w-full rounded-bild object-cover', klein ? 'aspect-[3/2] md:aspect-[3/1.2]' : 'aspect-[4/3] md:aspect-[16/9]']}
     />
     <div
       class:list={[

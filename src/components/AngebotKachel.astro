@@ -1,6 +1,6 @@
 ---
 /** Kachel für die Angebotsübersicht (Home + /unsere-angebote/): Foto, Leitfarbe, Teaser, Link. */
-import { Picture } from 'astro:assets';
+import Foto from './Foto.astro';
 import Icon from './Icon.astro';
 
 interface Props {
@@ -28,10 +28,9 @@ const iconBg = { wiese: 'bg-wiese text-white', sonne: 'bg-sonne text-erde', himm
     rand,
   ]}
 >
-  <Picture
+  <Foto
     src={bild}
     alt={alt}
-    formats={['avif', 'webp']}
     width={640}
     class="aspect-[4/3] w-full object-cover"
   />

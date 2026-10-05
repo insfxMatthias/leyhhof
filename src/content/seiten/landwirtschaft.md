@@ -4,11 +4,11 @@ description: "Unsere 140 Milchkühe stehen in einem hochmodernen Stall, der im S
 h1: "Moderne Landwirtschaft"
 hero:
   bild:
-    src: "../../images/hero-landwirtschaft.jpg"
-    alt: "Blauer Traktor mit Ladewagen auf der Wiese"
+    src: "../../images/hero-landwirtschaft.webp"
+    alt: "Kinder mit Eimern stehen im Stall am Futtergitter, ein Landwirt erklärt ihnen die Kühe"
 bild:
-  src: "../../images/luftbild-hof.jpg"
-  alt: "Luftbild des Leyh-Hofs mit Stall, Fahrsilos und Biogasanlage"
+  src: "../../images/kuh-streicheln.webp"
+  alt: "Mutter und Kinder streicheln eine schwarz-weiße Kuh am Futtergitter im Stall"
 ---
 
 Unsere 140 Milchkühe stehen in einem hochmodernen Stall, der im Sommer nach vier Seiten geöffnet wird. Die Kühe können sich bewegen, wohin sie möchten, oder auf dem Strohbett liegen. Der Stall reinigt sich kontinuierlich selbst. Das Futter liegt ganztägig bereit, so dass die Kühe in ihrem eigenen Rhythmus fressen und wiederkäuen können. Zudem haben unsere Kühe 24 Stunden am Tag die Möglichkeit, zum Melken zu gehen: Am Melkroboter werden sie vollautomatisch gemolken. Kühe, die nicht alleine zum Melkroboter gehen, führen wir täglich zum Melken.

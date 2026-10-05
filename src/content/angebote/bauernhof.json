@@ -6,8 +6,12 @@
   "title": "Bauernhof - Unsere Angebote | Erlebnisbauernhof Leyh",
   "description": "Schatzkiste Bauernhof: Riechen, Hören, Streicheln … und Mitarbeiten! Bauernhofgeburtstag, Bauernhofgeburtstag inkl. Ponyreiten, Unterricht auf dem Bauernhof und Eltern-Kind-Gruppe auf dem Erlebnisbauernhof Leyh.",
   "bild": {
-    "src": "../../images/angebot-bauernhof.jpg",
-    "alt": "Oldtimer-Traktor mit Kindern auf dem Hof"
+    "src": "../../images/angebot-bauernhof.webp",
+    "alt": "Kinder laufen zu einem alten blauen Traktor, auf dem ein Mann sitzt"
+  },
+  "heroBild": {
+    "src": "../../images/kuh-streicheln.webp",
+    "alt": "Mutter und Kinder streicheln eine schwarz-weiße Kuh am Futtergitter im Stall"
   },
   "teaser": "Ob in anschaulichen Lehrstunden, beim Sahneschütteln oder Wettmelken, beim Kälbchen füttern oder Traktor fahren – im Lauf der Jahreszeiten wird es nie langweilig!",
   "h1": "Schatzkiste Bauernhof",
@@ -17,12 +21,20 @@
     {
       "icon": "kuh",
       "titel": "Bauernhofgeburtstag",
-      "text": "Der Geburtstag findet auf dem Bauernhof statt. Hier lernen die Kinder spielerisch das Leben auf einem Bauernhof kennen. Sei es in einem Italiener für Kühe oder auf einer spannenden Schatzsuche durch den Kuhstall."
+      "text": "Der Geburtstag findet auf dem Bauernhof statt. Hier lernen die Kinder spielerisch das Leben auf einem Bauernhof kennen. Sei es in einem Italiener für Kühe oder auf einer spannenden Schatzsuche durch den Kuhstall.",
+      "bild": {
+        "src": "../../images/kinder-basteln.webp",
+        "alt": "Kinder basteln gemeinsam an einem Holztisch im Freien"
+      }
     },
     {
       "icon": "pony",
       "titel": "Bauernhofgeburtstag inkl. Ponyreiten",
-      "text": "Hier lernt ihr zuerst die Welt auf einem Bauernhof kennen. Gemeinsam eröffnen wir einen Italiener für Kühe und \"backen\" für unsere Ladys ihre Lieblingspizza. Wie die Milch in die Molkerei kommt, schauen wir uns selbstverständlich auch an. Um den Tag bei uns dann ausklingen zu lassen, können die Kinder zwischen Ponyreiten und Kutschfahren wählen."
+      "text": "Hier lernt ihr zuerst die Welt auf einem Bauernhof kennen. Gemeinsam eröffnen wir einen Italiener für Kühe und \"backen\" für unsere Ladys ihre Lieblingspizza. Wie die Milch in die Molkerei kommt, schauen wir uns selbstverständlich auch an. Um den Tag bei uns dann ausklingen zu lassen, können die Kinder zwischen Ponyreiten und Kutschfahren wählen.",
+      "bild": {
+        "src": "../../images/ponyreiten.avif",
+        "alt": "Kinder mit Helmen führen ein weißes Pony über einen Feldweg"
+      }
     }
   ],
   "beachten": true,

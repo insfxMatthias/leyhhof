@@ -37,7 +37,7 @@ const tabAktiv = {
 ---
 
 <Base title={d.title} description={d.description}>
-  <Hero bild={d.bild.src} alt={d.bild.alt} h1={d.h1} kicker={`Unsere Angebote · ${d.name}`} farbe={d.farbe} klein />
+  <Hero bild={(d.heroBild ?? d.bild).src} alt={(d.heroBild ?? d.bild).alt} h1={d.h1} kicker={`Unsere Angebote · ${d.name}`} farbe={d.farbe} klein />
 
   <nav aria-label="Angebotsbereiche" class="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
     <ul class="flex flex-wrap gap-2">
@@ -70,7 +70,7 @@ const tabAktiv = {
     <section class="mx-auto max-w-6xl px-4 pb-12 sm:px-6" aria-label="Angebote">
       <div class="grid gap-6 md:grid-cols-2">
         {d.angebote.map((a) => (
-          <AngebotKarte icon={a.icon} titel={a.titel} text={a.text} farbe={d.farbe} />
+          <AngebotKarte icon={a.icon} titel={a.titel} text={a.text} farbe={d.farbe} bild={a.bild} />
         ))}
       </div>
     </section>

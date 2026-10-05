@@ -17,6 +17,8 @@ export default defineConfig({
     // Responsive Bilder mit srcset/sizes automatisch aus astro:assets
     layout: 'constrained',
     responsiveStyles: true,
+    // Weniger Varianten als Astro-Standard: Quellbilder sind bis 2560 px breit.
+    breakpoints: [480, 640, 768, 1024, 1280, 1600, 1920],
   },
   // Alte Jimdo-URLs, die es nicht mehr gibt. Caddy liefert echte 301er,
   // das hier ist nur der Fallback (Meta-Refresh) für andere Webserver.

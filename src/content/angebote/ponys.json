@@ -6,8 +6,8 @@
   "title": "Ponys - Unsere Angebote | Erlebnisbauernhof Leyh",
   "description": "Kindergeburtstage mit Ponys auf dem Erlebnisbauernhof Leyh: Pferdegeburtstag, Zirkusgeburtstag, Indianergeburtstag und Einhorngeburtstag. Wir haben eine Auswahl an vielen verschiedenen Möglichkeiten, den Aufenthalt von Ihren Kindern unvergesslich zu machen.",
   "bild": {
-    "src": "../../images/angebot-ponys.jpg",
-    "alt": "Kindergruppe auf Strohballen im Stall"
+    "src": "../../images/angebot-ponys.webp",
+    "alt": "Kindergruppe sitzt auf Strohballen in der Scheune"
   },
   "teaser": "Wir haben eine Auswahl an vielen verschiedenen Möglichkeiten, den Aufenthalt von Ihren Kindern unvergesslich zu machen.",
   "h1": "Kindergeburtstage",
@@ -16,7 +16,11 @@
     {
       "icon": "pony",
       "titel": "Pferdegeburtstag",
-      "text": "Zuerst putzen wir gemeinsam die Ponys, danach dürft ihr auf dem Pony ein Pferdequiz lösen, um am ende einen Schatz zu finden. Zum Schluss werden gemeinsame Spiele gespielt und basteln ein Pony."
+      "text": "Zuerst putzen wir gemeinsam die Ponys, danach dürft ihr auf dem Pony ein Pferdequiz lösen, um am ende einen Schatz zu finden. Zum Schluss werden gemeinsame Spiele gespielt und basteln ein Pony.",
+      "bild": {
+        "src": "../../images/pony.avif",
+        "alt": "Geschecktes Pony mit Halfter vor herbstlichen Bäumen"
+      }
     },
     {
       "icon": "zirkus",
@@ -26,12 +30,20 @@
     {
       "icon": "feder",
       "titel": "Indianergeburtstag",
-      "text": "Hier werden die Ponys zusammen geputzt und fertig gemacht. Anschließend erhalten die Ponys ihre Kriegsbemalung, welche sie erst zu richtigen Indianerponys macht. Um dann das Feeling eines echten Indianers erleben zu können, könnt ihr eure Fähigkeiten an verschiedenen Stationen zu Pferd oder zu Fuß beweisen. Zum Schluss wird dann noch Indianerschmuck gebastelt, um den Tag entspannt ausklingen zu lassen."
+      "text": "Hier werden die Ponys zusammen geputzt und fertig gemacht. Anschließend erhalten die Ponys ihre Kriegsbemalung, welche sie erst zu richtigen Indianerponys macht. Um dann das Feeling eines echten Indianers erleben zu können, könnt ihr eure Fähigkeiten an verschiedenen Stationen zu Pferd oder zu Fuß beweisen. Zum Schluss wird dann noch Indianerschmuck gebastelt, um den Tag entspannt ausklingen zu lassen.",
+      "bild": {
+        "src": "../../images/indianer-wald.avif",
+        "alt": "Kinder mit Helmen spielen beim Indianergeburtstag im Wald"
+      }
     },
     {
       "icon": "einhorn",
       "titel": "Einhorngeburtstag",
-      "text": "Zuerst putzen wir gemeinsam die Ponys und verwandeln die Ponys dann in Einhörner. Danach dürft ihr mit auf eurem Lieblingseinhorn ein Foto machen und schließlich reiten wir alle gemeinsam in den magischen Wald. Zum Schluss basteln wir noch ein Einhorn und spielen gemeinsam Spiele."
+      "text": "Zuerst putzen wir gemeinsam die Ponys und verwandeln die Ponys dann in Einhörner. Danach dürft ihr mit auf eurem Lieblingseinhorn ein Foto machen und schließlich reiten wir alle gemeinsam in den magischen Wald. Zum Schluss basteln wir noch ein Einhorn und spielen gemeinsam Spiele.",
+      "bild": {
+        "src": "../../images/einhorn-pony.avif",
+        "alt": "Weißes Pony mit bunt gefärbter Mähne und Blumen als Einhorn verkleidet"
+      }
     }
   ],
   "beachten": true,
