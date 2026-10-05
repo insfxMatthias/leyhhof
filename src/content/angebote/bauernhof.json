@@ -1,0 +1,58 @@
+{
+  "name": "Bauernhof",
+  "reihenfolge": 1,
+  "farbe": "wiese",
+  "icon": "kuh",
+  "title": "Bauernhof - Unsere Angebote | Erlebnisbauernhof Leyh",
+  "description": "Schatzkiste Bauernhof: Riechen, Hören, Streicheln … und Mitarbeiten! Bauernhofgeburtstag, Bauernhofgeburtstag inkl. Ponyreiten, Unterricht auf dem Bauernhof und Eltern-Kind-Gruppe auf dem Erlebnisbauernhof Leyh.",
+  "bild": {
+    "src": "../../images/angebot-bauernhof.jpg",
+    "alt": "Oldtimer-Traktor mit Kindern auf dem Hof"
+  },
+  "teaser": "Ob in anschaulichen Lehrstunden, beim Sahneschütteln oder Wettmelken, beim Kälbchen füttern oder Traktor fahren – im Lauf der Jahreszeiten wird es nie langweilig!",
+  "h1": "Schatzkiste Bauernhof",
+  "untertitel": "Riechen, Hören, Streicheln … und Mitarbeiten!",
+  "einleitung": "Bei uns genießen Besucher mit allen Sinnen. Für Kinder, Erwachsene, Besucher mit Handicap, als Unterricht auf dem Bauernhof, beim Kindergeburtstag, in der Jahreszeitengruppe, im Ferienprogramm oder einfach für die ganze Familie: Wir bieten für jedes Alter Spiele, Unterricht und Mitmachspaß an. Ob in anschaulichen Lehrstunden, beim Sahneschütteln oder Wettmelken, beim Kälbchen füttern oder Traktor fahren – im Lauf der Jahreszeiten wird es nie langweilig!",
+  "angebote": [
+    {
+      "icon": "kuh",
+      "titel": "Bauernhofgeburtstag",
+      "text": "Der Geburtstag findet auf dem Bauernhof statt. Hier lernen die Kinder spielerisch das Leben auf einem Bauernhof kennen. Sei es in einem Italiener für Kühe oder auf einer spannenden Schatzsuche durch den Kuhstall."
+    },
+    {
+      "icon": "pony",
+      "titel": "Bauernhofgeburtstag inkl. Ponyreiten",
+      "text": "Hier lernt ihr zuerst die Welt auf einem Bauernhof kennen. Gemeinsam eröffnen wir einen Italiener für Kühe und \"backen\" für unsere Ladys ihre Lieblingspizza. Wie die Milch in die Molkerei kommt, schauen wir uns selbstverständlich auch an. Um den Tag bei uns dann ausklingen zu lassen, können die Kinder zwischen Ponyreiten und Kutschfahren wählen."
+    }
+  ],
+  "beachten": true,
+  "abschnitte": {
+    "ueberschrift": "Weitere Angebote",
+    "eintraege": [
+      {
+        "titel": "Unterricht auf dem Bauernhof",
+        "text": "Im \"Klassenzimmer auf dem Bauernhof\" erfahren Kinder Wissenswertes rund um unsere Nahrungskette, die Landwirtschaft, Energiegewinnung etc. Ein Vor- oder Nachmittag (ca. vier Stunden) findet unter einem Thema wie zum Beispiel „ Vom Getreide zum Brot\" oder „Von der Kuh zur Milch\" statt. Dieser Tag beinhaltet beispielsweise ein Kennenlernspiel, einen Rundgang auf dem Hof, das Erleben des Hofs mit allen Sinnen, Spielen oder einer Bauernhofrallye mit vielen verschiedenen Lernstationen. Verpflegung ist auf Wunsch gerne möglich!",
+        "preisLabel": "Kosten",
+        "preis": "160,- € für 4 Std."
+      },
+      {
+        "titel": "Zielgruppe und Kostenübernahme",
+        "text": "Wir freuen uns über jeden Besucher, ob alt oder jung, körperlich oder geistig eingeschränkt, Lebenshilfe-, Kindergarten- oder Schulkind, Förderklasse oder Behinderteneinrichtung! Schulklassenausflüge der 2., 3. und 4. Jahrgangsstufe von Grundschulklassen und alle Jahrgangsstufen der Förderschule sind kostenlos, die Kosten übernimmt der Staat!",
+        "stil": "himmel"
+      },
+      {
+        "titel": "Eltern- Kind- Gruppe",
+        "badge": "$elternKindGruppeStatus",
+        "text": "Gemeinsam möchten wir uns auf eine spannende Entdeckungsreise auf unserem Bauernhof und auf den umliegenden Wiesen und Feldern und im angrenzenden Wald machen! Ständig gibt es Neues zu entdecken und zu erleben und die Zeit verfliegt wie im Nu! Unsere Jahreskurse sind jedes Jahr neu ein Erlebnis, das Jung und Alt gleichermaßen begeistert!"
+      }
+    ]
+  },
+  "elternKindGruppeStatus": "-alle Termine in 2025 sind ausgebucht-",
+  "anmeldung": {
+    "ueberschrift": "Anmeldung bitte bei:",
+    "name": "Familie Leyh",
+    "telefon": "09531 8496",
+    "telefonLink": "+4995318496",
+    "hinweis": "Um eine rechtzeitige Anmeldung wird gebeten, da die Geburtstage sehr beliebt sind."
+  }
+}

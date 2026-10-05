@@ -1,0 +1,23 @@
+---
+/**
+ * Inline-SVG aus src/icons/. Einfarbig über currentColor, Linienstärke 2px.
+ * Ohne `label` rein dekorativ (aria-hidden), mit `label` als Bild mit Namen.
+ */
+const icons = import.meta.glob('../icons/*.svg', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
+
+interface Props {
+  name: string;
+  class?: string;
+  label?: string;
+}
+const { name, class: klasse = 'size-6', label } = Astro.props;
+const roh = icons[`../icons/${name}.svg`];
+if (!roh) throw new Error(`Icon "${name}" nicht in src/icons/ gefunden.`);
+
+const attribute = label
+  ? `class="${klasse}" role="img" aria-label="${label.replace(/"/g, '&quot;')}"`
+  : `class="${klasse}" aria-hidden="true"`;
+const svg = roh.replace(/\s*aria-hidden="true"/, '').replace('<svg ', `<svg ${attribute} `);
+---
+
+<Fragment set:html={svg} />

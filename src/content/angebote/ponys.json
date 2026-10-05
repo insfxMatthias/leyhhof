@@ -1,0 +1,45 @@
+{
+  "name": "Ponys",
+  "reihenfolge": 2,
+  "farbe": "sonne",
+  "icon": "pony",
+  "title": "Ponys - Unsere Angebote | Erlebnisbauernhof Leyh",
+  "description": "Kindergeburtstage mit Ponys auf dem Erlebnisbauernhof Leyh: Pferdegeburtstag, Zirkusgeburtstag, Indianergeburtstag und Einhorngeburtstag. Wir haben eine Auswahl an vielen verschiedenen Möglichkeiten, den Aufenthalt von Ihren Kindern unvergesslich zu machen.",
+  "bild": {
+    "src": "../../images/angebot-ponys.jpg",
+    "alt": "Kindergruppe auf Strohballen im Stall"
+  },
+  "teaser": "Wir haben eine Auswahl an vielen verschiedenen Möglichkeiten, den Aufenthalt von Ihren Kindern unvergesslich zu machen.",
+  "h1": "Kindergeburtstage",
+  "einleitung": "Wir haben eine Auswahl an vielen verschiedenen Möglichkeiten, den Aufenthalt von Ihren Kindern unvergesslich zu machen.",
+  "angebote": [
+    {
+      "icon": "pony",
+      "titel": "Pferdegeburtstag",
+      "text": "Zuerst putzen wir gemeinsam die Ponys, danach dürft ihr auf dem Pony ein Pferdequiz lösen, um am ende einen Schatz zu finden. Zum Schluss werden gemeinsame Spiele gespielt und basteln ein Pony."
+    },
+    {
+      "icon": "zirkus",
+      "titel": "Zirkusgeburtstag",
+      "text": "Zuerst putzen wir gemeinsam die Ponys, danach studieren wir mit den Ponys ein paar Kunststücke ein und schließlich können die Kinder auf den Ponys voltigieren (turnen). Natürlich gibt es auch Popcorn!"
+    },
+    {
+      "icon": "feder",
+      "titel": "Indianergeburtstag",
+      "text": "Hier werden die Ponys zusammen geputzt und fertig gemacht. Anschließend erhalten die Ponys ihre Kriegsbemalung, welche sie erst zu richtigen Indianerponys macht. Um dann das Feeling eines echten Indianers erleben zu können, könnt ihr eure Fähigkeiten an verschiedenen Stationen zu Pferd oder zu Fuß beweisen. Zum Schluss wird dann noch Indianerschmuck gebastelt, um den Tag entspannt ausklingen zu lassen."
+    },
+    {
+      "icon": "einhorn",
+      "titel": "Einhorngeburtstag",
+      "text": "Zuerst putzen wir gemeinsam die Ponys und verwandeln die Ponys dann in Einhörner. Danach dürft ihr mit auf eurem Lieblingseinhorn ein Foto machen und schließlich reiten wir alle gemeinsam in den magischen Wald. Zum Schluss basteln wir noch ein Einhorn und spielen gemeinsam Spiele."
+    }
+  ],
+  "beachten": true,
+  "anmeldung": {
+    "ueberschrift": "Anmeldung bitte bei:",
+    "name": "Christine Dumsky",
+    "telefon": "0170 1702297",
+    "telefonLink": "+491701702297",
+    "hinweis": "Um eine rechtzeitige Anmeldung wird gebeten, da die Geburtstage sehr beliebt sind."
+  }
+}

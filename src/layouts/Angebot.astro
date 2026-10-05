@@ -1,0 +1,119 @@
+---
+/**
+ * Gemeinsames Template der drei Angebotsseiten (konzept.md 3.2).
+ * Reihenfolge wie im Original: Kopf · Einleitung · Angebotskarten ·
+ * „Was gibt es zu beachten?“ · weitere Abschnitte · „Anmeldung bitte bei:“
+ */
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import Base from './Base.astro';
+import Hero from '../components/Hero.astro';
+import AngebotKarte from '../components/AngebotKarte.astro';
+import Infobox from '../components/Infobox.astro';
+import Kontaktbox from '../components/Kontaktbox.astro';
+import Preisschild from '../components/Preisschild.astro';
+import Icon from '../components/Icon.astro';
+
+interface Props {
+  eintrag: CollectionEntry<'angebote'>;
+}
+const { eintrag } = Astro.props;
+const d = eintrag.data;
+const alle = (await getCollection('angebote')).sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
+
+// Badge-Text kann auf ein eigenes Feld zeigen ("$elternKindGruppeStatus"),
+// damit er ohne Code-Änderung in der JSON gepflegt werden kann.
+const badgeText = (badge?: string) =>
+  badge?.startsWith('$') ? (d as Record<string, unknown>)[badge.slice(1)] as string | undefined : badge;
+
+// Ohne Zwischenüberschrift folgen die Abschnitte direkt auf die H1 → H2
+const Abschnitt = (d.abschnitte?.ueberschrift ? 'h3' : 'h2') as 'h2' | 'h3';
+
+const tabAktiv = {
+  wiese: 'bg-wiese-dunkel text-white',
+  sonne: 'bg-sonne text-erde',
+  himmel: 'bg-himmel text-erde',
+};
+---
+
+<Base title={d.title} description={d.description}>
+  <Hero bild={d.bild.src} alt={d.bild.alt} h1={d.h1} kicker={`Unsere Angebote · ${d.name}`} farbe={d.farbe} klein />
+
+  <nav aria-label="Angebotsbereiche" class="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
+    <ul class="flex flex-wrap gap-2">
+      {alle.map((a) => (
+        <li>
+          <a
+            href={`/unsere-angebote/${a.id}/`}
+            aria-current={a.id === eintrag.id ? 'page' : undefined}
+            class:list={[
+              'inline-flex items-center gap-2 rounded-full px-4 py-2 font-semibold no-underline transition-colors',
+              a.id === eintrag.id ? tabAktiv[a.data.farbe] : 'bg-stroh text-erde hover:bg-[#e9d9ad]',
+            ]}
+          >
+            <Icon name={a.data.icon} class="size-5" />
+            {a.data.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <section class="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14" aria-label="Einleitung">
+    <div class="prose-hof text-xl leading-relaxed">
+      {d.untertitel && <p class="font-headline text-2xl font-semibold text-erde">{d.untertitel}</p>}
+      <p>{d.einleitung}</p>
+    </div>
+  </section>
+
+  {d.angebote.length > 0 && (
+    <section class="mx-auto max-w-6xl px-4 pb-12 sm:px-6" aria-label="Angebote">
+      <div class="grid gap-6 md:grid-cols-2">
+        {d.angebote.map((a) => (
+          <AngebotKarte icon={a.icon} titel={a.titel} text={a.text} farbe={d.farbe} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  {d.beachten && (
+    <div class="mx-auto max-w-6xl px-4 pb-12 sm:px-6">
+      <Infobox farbe={d.farbe} />
+    </div>
+  )}
+
+  {d.abschnitte && (
+    <section class="mx-auto max-w-6xl px-4 pb-12 sm:px-6" aria-labelledby={d.abschnitte.ueberschrift ? 'weitere-titel' : undefined} aria-label={d.abschnitte.ueberschrift ? undefined : 'Details'}>
+      {d.abschnitte.ueberschrift && <h2 id="weitere-titel" class="mb-6">{d.abschnitte.ueberschrift}</h2>}
+      <div class="grid gap-6">
+        {d.abschnitte.eintraege.map((e) => (
+          <article
+            class:list={[
+              'rounded-karte p-6 sm:p-8',
+              e.stil === 'himmel' ? 'border-l-8 border-himmel bg-himmel/15' : 'bg-white shadow-karte',
+            ]}
+          >
+            <div class="flex flex-wrap items-center gap-3">
+              <Abschnitt class="text-2xl">{e.titel}</Abschnitt>
+              {badgeText(e.badge) && (
+                <span class="rounded-full border-2 border-mohn-dunkel bg-mohn/10 px-3 py-1 text-sm font-bold text-mohn-dunkel">
+                  {badgeText(e.badge)}
+                </span>
+              )}
+            </div>
+            <p class="prose-hof mt-3">{e.text}</p>
+            {e.preis && (
+              <div class="mt-5">
+                <Preisschild label={e.preisLabel} preis={e.preis} />
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <div class="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
+    <Kontaktbox {...d.anmeldung} />
+  </div>
+</Base>

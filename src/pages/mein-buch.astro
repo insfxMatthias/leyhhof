@@ -1,0 +1,46 @@
+---
+import { getEntry, render } from 'astro:content';
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Button from '../components/Button.astro';
+
+const seite = await getEntry('seiten', 'buch');
+if (!seite || !seite.data.hero || !seite.data.cover) throw new Error('buch.md unvollständig');
+const { Content } = await render(seite);
+const kauf = seite.data.hero.buttons[0];
+---
+
+<Base title={seite.data.title} description={seite.data.description}>
+  <Hero
+    bild={seite.data.hero.bild.src}
+    alt={seite.data.hero.bild.alt}
+    h1={seite.data.h1}
+    unterzeile={seite.data.hero.unterzeile}
+    buttons={seite.data.hero.buttons}
+    farbe="sonne"
+  />
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16" aria-label="Über das Buch">
+    <div class="grid gap-10 md:grid-cols-[16rem_minmax(0,1fr)] lg:grid-cols-[20rem_minmax(0,1fr)]">
+      <aside>
+        <div class="md:sticky md:top-24">
+          <Picture
+            src={seite.data.cover.src}
+            alt={seite.data.cover.alt}
+            formats={['avif', 'webp']}
+            width={640}
+            class="mx-auto w-full max-w-xs rounded-karte shadow-karte md:max-w-none"
+          />
+          {kauf && (
+            <div class="mt-6 text-center">
+              <Button href={kauf.href} stil="sonne" icon="buch" gross>{kauf.label}</Button>
+            </div>
+          )}
+        </div>
+      </aside>
+      <div class="prose-hof text-xl leading-relaxed">
+        <Content />
+      </div>
+    </div>
+  </section>
+</Base>

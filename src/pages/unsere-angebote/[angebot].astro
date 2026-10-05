@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import Angebot from '../../layouts/Angebot.astro';
+
+export async function getStaticPaths() {
+  const angebote = await getCollection('angebote');
+  return angebote.map((eintrag) => ({ params: { angebot: eintrag.id }, props: { eintrag } }));
+}
+const { eintrag } = Astro.props;
+---
+
+<Angebot eintrag={eintrag} />

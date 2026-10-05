@@ -1,0 +1,107 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import Zahlen from '../components/Zahlen.astro';
+import WellenDivider from '../components/WellenDivider.astro';
+import AngebotKachel from '../components/AngebotKachel.astro';
+import hof from '../content/hof.json';
+
+const home = await getEntry('seiten', 'home');
+if (!home || !home.data.hero || !home.data.karten || !home.data.zahlen) throw new Error('home.md unvollständig');
+const { Content } = await render(home);
+const angebote = (await getCollection('angebote')).sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
+---
+
+<Base title={home.data.title} description={home.data.description}>
+  <Hero
+    bild={home.data.hero.bild.src}
+    alt={home.data.hero.bild.alt}
+    h1={home.data.h1}
+    unterzeile={home.data.hero.unterzeile}
+    buttons={home.data.hero.buttons}
+  />
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16" aria-label="Willkommen">
+    <div class="prose-hof mx-auto text-xl leading-relaxed">
+      <Content />
+    </div>
+  </section>
+
+  <WellenDivider von="creme" nach="stroh" />
+  <section class="bg-stroh" aria-labelledby="angebote-titel">
+    <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <h2 id="angebote-titel">Unsere Angebote</h2>
+        <a href="/unsere-angebote/" class="font-semibold">Alle Angebote</a>
+      </div>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {angebote.map((a) => (
+          <AngebotKachel
+            href={`/unsere-angebote/${a.id}/`}
+            name={a.data.name}
+            teaser={a.data.teaser}
+            bild={a.data.bild.src}
+            alt={a.data.bild.alt}
+            icon={a.data.icon}
+            farbe={a.data.farbe}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  <WellenDivider von="stroh" nach="erde" gespiegelt />
+
+  <Zahlen zahlen={home.data.zahlen} />
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16" aria-labelledby="auszeichnung-titel">
+    <h2 id="auszeichnung-titel">{home.data.karten.ueberschrift}</h2>
+    <div class="mt-8 grid gap-6 md:grid-cols-2">
+      {home.data.karten.eintraege.map((k) => (
+        <article class="flex flex-col overflow-hidden rounded-karte bg-white shadow-karte">
+          <Picture src={k.bild.src} alt={k.bild.alt} formats={['avif', 'webp']} width={800} class="aspect-[4/3] w-full object-cover" />
+          <div class="flex flex-1 flex-col p-6 sm:p-8">
+            <h3 class="text-2xl">{k.titel}</h3>
+            <p class="mt-3">{k.text}</p>
+            <div class="mt-6">
+              <Button href={k.button.href} stil={k.button.stil}>{k.button.label}</Button>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 pb-12 sm:px-6 sm:pb-16" aria-label="Instagram und Anfahrt">
+    <div class="grid gap-6 md:grid-cols-2">
+      <a
+        href={hof.instagram.url}
+        rel="noopener"
+        class="flex items-center gap-5 rounded-karte bg-sonne p-6 text-erde no-underline shadow-karte transition-[transform,box-shadow] hover:-translate-y-1 hover:shadow-karte-hover motion-reduce:hover:translate-y-0 sm:p-8"
+      >
+        <Icon name="instagram" class="size-12 shrink-0" />
+        <span>
+          <span class="block font-headline text-2xl font-bold">Folgt uns auf Instagram</span>
+          <span class="mt-1 block text-lg font-medium">{hof.instagram.handle}</span>
+        </span>
+      </a>
+      <div class="flex flex-col rounded-karte bg-white p-6 shadow-karte sm:p-8">
+        <div class="flex items-start gap-4">
+          <span class="inline-flex shrink-0 rounded-full bg-himmel p-2 text-erde"><Icon name="pin" class="size-7" /></span>
+          <address class="not-italic leading-relaxed">
+            <strong class="font-headline text-xl">{hof.name}</strong><br />
+            {hof.adresse.strasse}<br />
+            {hof.adresse.plz} {hof.adresse.ort}
+          </address>
+        </div>
+        <p class="mt-4 text-base">{hof.naviHinweis}</p>
+        <div class="mt-5">
+          <Button href="/kontakt/" stil="rahmen" icon="pfeil">Anfahrt &amp; Kontakt</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

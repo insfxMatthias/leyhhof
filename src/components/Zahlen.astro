@@ -1,0 +1,18 @@
+---
+/** „Hof in Zahlen“ – nur Fakten aus den vorhandenen Texten. */
+interface Props {
+  zahlen: { zahl: string; label: string }[];
+}
+const { zahlen } = Astro.props;
+---
+
+<section class="bg-erde text-creme" aria-label="Der Hof in Zahlen">
+  <dl class="mx-auto grid max-w-6xl grid-cols-2 gap-x-4 gap-y-8 px-4 py-12 text-center sm:px-6 md:grid-cols-5">
+    {zahlen.map((z) => (
+      <div class="last:col-span-2 md:last:col-span-1">
+        <dd class="font-headline text-4xl font-bold text-sonne sm:text-5xl">{z.zahl}</dd>
+        <dt class="mt-1 text-sm font-medium text-creme/90 sm:text-base">{z.label}</dt>
+      </div>
+    ))}
+  </dl>
+</section>

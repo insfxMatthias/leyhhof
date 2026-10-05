@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Base title="Seite nicht gefunden | Erlebnisbauernhof Leyh" description="Diese Seite gibt es auf leyhhof.de nicht (mehr). Hier geht es zurück zur Startseite und zu unseren Angeboten.">
+  <section class="mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="fehler-titel">
+    <span class="inline-flex rounded-full bg-sonne p-4 text-erde"><Icon name="kuh" class="size-12" /></span>
+    <h1 id="fehler-titel">Seite nicht gefunden</h1>
+    <p class="max-w-[70ch] text-xl">Diese Seite gibt es nicht (mehr). Vielleicht findet Ihr, was Ihr sucht, bei unseren Angeboten.</p>
+    <div class="flex flex-wrap gap-3">
+      <Button href="/unsere-angebote/" gross>Unsere Angebote</Button>
+      <Button href="/" stil="rahmen">Zur Startseite</Button>
+    </div>
+  </section>
+</Base>

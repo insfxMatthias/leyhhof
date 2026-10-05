@@ -1,0 +1,28 @@
+---
+import { getEntry, render } from 'astro:content';
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+
+const seite = await getEntry('seiten', 'landwirtschaft');
+if (!seite || !seite.data.hero || !seite.data.bild) throw new Error('landwirtschaft.md unvollständig');
+const { Content } = await render(seite);
+---
+
+<Base title={seite.data.title} description={seite.data.description}>
+  <Hero bild={seite.data.hero.bild.src} alt={seite.data.hero.bild.alt} h1={seite.data.h1} klein />
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16" aria-label="Text">
+    <div class="prose-hof text-xl leading-relaxed">
+      <Content />
+    </div>
+  </section>
+  <section class="mx-auto max-w-6xl px-4 pb-16 sm:px-6" aria-label="Luftbild">
+    <Picture
+      src={seite.data.bild.src}
+      alt={seite.data.bild.alt}
+      formats={['avif', 'webp']}
+      width={1600}
+      class="aspect-[16/9] w-full rounded-bild object-cover"
+    />
+  </section>
+</Base>

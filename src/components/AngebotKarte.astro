@@ -1,0 +1,21 @@
+---
+/** Einzelnes Angebot (z. B. Pferdegeburtstag) als Karte mit Icon, Titel, Text 1:1. */
+import Icon from './Icon.astro';
+
+interface Props {
+  icon: string;
+  titel: string;
+  text: string;
+  farbe: 'wiese' | 'sonne' | 'himmel';
+  ebene?: 2 | 3;
+}
+const { icon, titel, text, farbe, ebene = 2 } = Astro.props;
+const Titel = `h${ebene}` as 'h2' | 'h3';
+const iconBg = { wiese: 'bg-wiese text-white', sonne: 'bg-sonne text-erde', himmel: 'bg-himmel text-erde' }[farbe];
+---
+
+<article class="flex flex-col rounded-karte bg-white p-6 shadow-karte sm:p-7">
+  <span class:list={['inline-flex w-fit rounded-full p-3', iconBg]}><Icon name={icon} class="size-8" /></span>
+  <Titel class="mt-4 text-2xl">{titel}</Titel>
+  <p class="mt-3">{text}</p>
+</article>

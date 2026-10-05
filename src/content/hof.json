@@ -1,0 +1,43 @@
+{
+  "name": "Erlebnisbauernhof Leyh",
+  "inhaber": "Markus & Ute Leyh",
+  "adresse": {
+    "strasse": "Losbergsgereuth 1",
+    "plz": "96184",
+    "ort": "Rentweinsdorf"
+  },
+  "telefon": "09531 8496",
+  "telefonLink": "+4995318496",
+  "email": "info@leyhhof.de",
+  "instagram": {
+    "handle": "@erlebnisbauernhof_leyh",
+    "url": "https://www.instagram.com/erlebnisbauernhof_leyh/"
+  },
+  "geo": {
+    "lat": 50.08,
+    "lon": 10.73,
+    "hinweis": "Koordinaten ca., vor Launch mit Karte prüfen (konzept.md 4.3)"
+  },
+  "naviHinweis": "Ein kleiner Hinweis: Unser Bauernhof liegt im kleinen und gemütlichen Losbergsgereuth (im Navi gebt Ihr bitte als Ort Rentweinsdorf an und als Straße Losbergereuth, denn wir haben nur die eine Straße).",
+  "navigation": [
+    { "label": "Home", "href": "/" },
+    { "label": "Unsere Angebote", "href": "/unsere-angebote/" },
+    { "label": "Moderne Landwirtschaft", "href": "/moderne-landwirtschaft/" },
+    { "label": "Mein Buch", "href": "/mein-buch/" },
+    { "label": "Kontakt", "href": "/kontakt/" }
+  ],
+  "footerNavigation": [
+    { "label": "Impressum", "href": "/impressum/" },
+    { "label": "Datenschutz", "href": "/datenschutz/" }
+  ],
+  "beachten": {
+    "ueberschrift": "Was gibt es zu beachten?",
+    "punkte": [
+      { "icon": "uhr", "text": "Dauer ca. 3 Stunden" },
+      { "icon": "brotzeit", "text": "Verpflegung muss mitgebracht werden" },
+      { "icon": "tshirt", "text": "nicht die neusten Klamotten" },
+      { "icon": "helm", "text": "Bitte denkt an Fahrradhelme, wenn es zu den Pferden geht" },
+      { "icon": "eltern", "text": "Eltern dürfen bleiben - müssen aber nicht" }
+    ]
+  }
+}

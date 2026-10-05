@@ -1,0 +1,122 @@
+---
+import { getCollection } from 'astro:content';
+import hof from '../content/hof.json';
+import Icon from './Icon.astro';
+
+const angebote = (await getCollection('angebote')).sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
+const pfad = Astro.url.pathname;
+const aktiv = (href: string) => (href === '/' ? pfad === '/' : pfad.startsWith(href));
+
+const linkKlasse = (href: string) =>
+  [
+    'whitespace-nowrap rounded-full px-3 py-2 font-medium no-underline transition-colors hover:bg-stroh',
+    aktiv(href) ? 'bg-stroh text-wiese-dunkel' : 'text-erde',
+  ].join(' ');
+---
+
+<header class="sticky top-0 z-40 border-b border-stroh bg-creme">
+  <div class="relative z-10 mx-auto flex h-16 max-w-6xl items-center gap-2 px-4 sm:h-[4.5rem] sm:px-6">
+    <a href="/" class="flex items-center gap-2 no-underline" aria-label="Erlebnisbauernhof Leyh – zur Startseite">
+      <Icon name="logo" class="size-10 shrink-0 sm:size-12" />
+      <span class="whitespace-nowrap font-headline text-lg font-bold leading-tight text-wiese-dunkel sm:text-xl">
+        Erlebnisbauernhof Leyh
+      </span>
+    </a>
+
+    <nav aria-label="Hauptnavigation" class="ml-auto hidden xl:block">
+      <ul class="flex items-center gap-0.5 text-base">
+        {hof.navigation.map((n) => (
+          <li>
+            <a href={n.href} class={linkKlasse(n.href)} aria-current={aktiv(n.href) ? 'page' : undefined}>
+              {n.label}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a
+            href={hof.instagram.url}
+            rel="noopener"
+            class="inline-flex rounded-full p-2 text-erde no-underline transition-colors hover:bg-stroh"
+            aria-label={`Instagram: ${hof.instagram.handle}`}
+          >
+            <Icon name="instagram" class="size-6" />
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <a
+      href={`tel:${hof.telefonLink}`}
+      class="ml-auto inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-mohn-dunkel px-3 py-2 font-semibold text-white no-underline transition-colors hover:bg-[#a9381a] xl:ml-2"
+    >
+      <Icon name="telefon" class="size-5" />
+      <span class="hidden sm:inline">{hof.telefon}</span>
+      <span class="sr-only sm:hidden">Anrufen: {hof.telefon}</span>
+    </a>
+
+    <details id="menue" class="xl:hidden">
+      <summary
+        class="menue-knopf inline-flex cursor-pointer rounded-full p-2 text-erde transition-colors hover:bg-stroh"
+        aria-label="Menü"
+      >
+        <Icon name="menue" class="icon-menue size-7" />
+        <Icon name="schliessen" class="icon-schliessen size-7" />
+      </summary>
+      <nav aria-label="Menü" class="fixed inset-0 z-[-1] overflow-y-auto bg-creme pt-16 sm:pt-[4.5rem]">
+        <ul class="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-6 text-xl sm:px-6">
+          {hof.navigation.map((n) => (
+            <li>
+              <a
+                href={n.href}
+                class:list={['block rounded-2xl px-4 py-3 font-semibold no-underline', aktiv(n.href) ? 'bg-stroh text-wiese-dunkel' : 'text-erde']}
+                aria-current={aktiv(n.href) ? 'page' : undefined}
+              >
+                {n.label}
+              </a>
+              {n.href === '/unsere-angebote/' && (
+                <ul class="ml-4 border-l-2 border-stroh pl-2">
+                  {angebote.map((a) => (
+                    <li>
+                      <a
+                        href={`/unsere-angebote/${a.id}/`}
+                        class:list={['flex items-center gap-3 rounded-2xl px-4 py-2.5 text-lg no-underline', aktiv(`/unsere-angebote/${a.id}/`) ? 'bg-stroh text-wiese-dunkel' : 'text-erde']}
+                        aria-current={aktiv(`/unsere-angebote/${a.id}/`) ? 'page' : undefined}
+                      >
+                        <Icon name={a.data.icon} class="size-6" />
+                        {a.data.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+          <li class="mt-4">
+            <a href={hof.instagram.url} rel="noopener" class="flex items-center gap-3 rounded-2xl px-4 py-3 text-lg text-erde no-underline">
+              <Icon name="instagram" class="size-6" />
+              Instagram {hof.instagram.handle}
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<script>
+  // Kleine Ergänzung zum <details>-Menü: Escape schließt, Seite scrollt nicht mit.
+  const menue = document.getElementById('menue') as HTMLDetailsElement | null;
+  if (menue) {
+    const sync = () => document.documentElement.toggleAttribute('data-menue-offen', menue.open);
+    menue.addEventListener('toggle', sync);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menue.open) {
+        menue.open = false;
+        menue.querySelector('summary')?.focus();
+      }
+    });
+    window.matchMedia('(min-width: 80rem)').addEventListener('change', (e) => {
+      if (e.matches) menue.open = false;
+    });
+  }
+</script>

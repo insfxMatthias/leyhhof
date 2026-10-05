@@ -1,0 +1,36 @@
+---
+/** „Anmeldung bitte bei:“ – Name, Telefon als tel:-Link, großer Anruf-Button. */
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  ueberschrift: string;
+  name: string;
+  telefon: string;
+  telefonLink: string;
+  email?: string;
+  hinweis?: string;
+}
+const { ueberschrift, name, telefon, telefonLink, email, hinweis } = Astro.props;
+---
+
+<section class="rounded-karte border-4 border-sonne bg-white p-6 sm:p-8" aria-labelledby="anmeldung-titel">
+  <h2 id="anmeldung-titel" class="text-2xl sm:text-3xl">{ueberschrift}</h2>
+  <p class="mt-4 font-headline text-2xl font-semibold">{name}</p>
+  <ul class="mt-2 space-y-1 text-lg">
+    <li class="flex items-center gap-2">
+      <Icon name="telefon" class="size-5 text-wiese-dunkel" />
+      <span>Telefon: <a href={`tel:${telefonLink}`}>{telefon}</a></span>
+    </li>
+    {email && (
+      <li class="flex items-center gap-2">
+        <Icon name="mail" class="size-5 text-wiese-dunkel" />
+        <span>Email: <a href={`mailto:${email}`}>{email}</a></span>
+      </li>
+    )}
+  </ul>
+  <div class="mt-6">
+    <Button href={`tel:${telefonLink}`} stil="mohn" icon="telefon" gross>Jetzt anrufen: {telefon}</Button>
+  </div>
+  {hinweis && <p class="mt-5 text-erde/90">{hinweis}</p>}
+</section>

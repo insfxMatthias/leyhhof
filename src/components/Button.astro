@@ -1,0 +1,35 @@
+---
+/** Pillen-Button als Link. stil: wiese (primär) · mohn (Anrufen) · sonne · rahmen */
+import Icon from './Icon.astro';
+
+interface Props {
+  href: string;
+  stil?: 'wiese' | 'mohn' | 'sonne' | 'rahmen';
+  icon?: string;
+  class?: string;
+  gross?: boolean;
+}
+const { href, stil = 'wiese', icon, class: klasse = '', gross = false } = Astro.props;
+
+const stile = {
+  wiese: 'bg-wiese-dunkel text-white hover:bg-wiese-tief',
+  mohn: 'bg-mohn-dunkel text-white hover:bg-[#a9381a]',
+  sonne: 'bg-sonne text-erde hover:bg-[#e3a812]',
+  rahmen: 'border-2 border-wiese-dunkel text-wiese-dunkel hover:bg-wiese-dunkel/10',
+};
+const extern = /^https?:\/\//.test(href);
+---
+
+<a
+  href={href}
+  rel={extern ? 'noopener' : undefined}
+  class:list={[
+    'inline-flex items-center justify-center gap-2 rounded-full font-semibold no-underline transition-colors',
+    gross ? 'px-7 py-4 text-lg' : 'px-5 py-3',
+    stile[stil],
+    klasse,
+  ]}
+>
+  {icon && <Icon name={icon} class="size-5 shrink-0" />}
+  <slot />
+</a>

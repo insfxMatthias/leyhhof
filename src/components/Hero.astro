@@ -1,0 +1,55 @@
+---
+/**
+ * Großes Foto, nicht abgedunkelt. Text steht in einer hellen Karte,
+ * die auf Desktop unten links über das Bild ragt, mobil darunter.
+ */
+import { Picture } from 'astro:assets';
+import Button from './Button.astro';
+
+interface Props {
+  bild: ImageMetadata;
+  alt: string;
+  h1: string;
+  kicker?: string;
+  unterzeile?: string;
+  buttons?: { label: string; href: string; stil?: 'wiese' | 'mohn' | 'sonne' | 'rahmen' }[];
+  farbe?: 'wiese' | 'sonne' | 'himmel';
+  klein?: boolean;
+}
+const { bild, alt, h1, kicker, unterzeile, buttons = [], farbe = 'wiese', klein = false } = Astro.props;
+const akzent = { wiese: 'border-wiese', sonne: 'border-sonne', himmel: 'border-himmel' }[farbe];
+const kickerFarbe = { wiese: 'text-wiese-dunkel', sonne: 'text-[#9a6d00]', himmel: 'text-[#1d6ea6]' }[farbe];
+---
+
+<section class="mx-auto max-w-6xl px-4 pt-4 sm:px-6 sm:pt-6" aria-labelledby="hero-titel">
+  <div class="relative">
+    <Picture
+      src={bild}
+      alt={alt}
+      formats={['avif', 'webp']}
+      loading="eager"
+      fetchpriority="high"
+      width={1600}
+      class:list={['w-full rounded-bild object-cover', klein ? 'aspect-[3/1.4] md:aspect-[3/1]' : 'aspect-[4/3] md:aspect-[16/8]']}
+    />
+    <div
+      class:list={[
+        'relative z-10 -mt-10 mx-3 rounded-karte border-l-8 bg-white/95 p-5 shadow-karte sm:mx-6 sm:p-8 md:absolute md:bottom-8 md:left-8 md:mx-0 md:mt-0 md:max-w-xl',
+        akzent,
+      ]}
+    >
+      {kicker && <p class:list={['mb-2 text-sm font-bold uppercase tracking-wider', kickerFarbe]}>{kicker}</p>}
+      <h1 id="hero-titel">{h1}</h1>
+      {unterzeile && <p class="mt-3 font-headline text-xl text-erde sm:text-2xl">{unterzeile}</p>}
+      {buttons.length > 0 && (
+        <div class="mt-6 flex flex-wrap gap-3">
+          {buttons.map((b, i) => (
+            <Button href={b.href} stil={b.stil} icon={b.href.startsWith('tel:') ? 'telefon' : undefined} gross={i === 0}>
+              {b.label}
+            </Button>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

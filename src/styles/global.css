@@ -1,0 +1,147 @@
+/* Fraunces self-hosted (wght + opsz), kein Google-Fonts-Aufruf */
+@import "@fontsource-variable/fraunces/standard.css";
+@import "tailwindcss";
+
+/* Design-Tokens aus konzept.md Abschnitt 2.1 / 2.2 */
+@theme {
+  --color-*: initial;
+  --color-wiese: #3e8e41;
+  --color-wiese-dunkel: #2c6b2f;
+  --color-sonne: #f5b822;
+  --color-himmel: #4fa3dd;
+  --color-mohn: #e4572e;
+  --color-mohn-dunkel: #c2431e; /* Button-Hintergrund: weißer Text erreicht 5:1 */
+  --color-wiese-tief: #245a27;  /* Hover auf Primär-Buttons */
+  --color-creme: #fff8ec;
+  --color-stroh: #f3e6c4;
+  --color-erde: #3b2f2a;
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+
+  --font-headline: "Fraunces Variable", Georgia, "Times New Roman", serif;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --radius-karte: 1.25rem;
+  --radius-bild: 1.5rem;
+
+  --shadow-karte: 0 1px 2px rgb(59 47 42 / 0.06), 0 8px 24px -8px rgb(59 47 42 / 0.18);
+  --shadow-karte-hover: 0 2px 4px rgb(59 47 42 / 0.08), 0 18px 36px -12px rgb(59 47 42 / 0.28);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    font-size: 1.125rem; /* 18px mobil */
+    line-height: 1.6;
+    font-optical-sizing: auto;
+  }
+  @media (min-width: 48rem) {
+    body {
+      font-size: 1.1875rem; /* 19px Desktop */
+    }
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-headline);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    color: var(--color-wiese-dunkel);
+  }
+  h1 {
+    font-size: clamp(1.9rem, 6vw, 4rem);
+    font-weight: 700;
+  }
+  h2 {
+    font-size: clamp(1.75rem, 4vw, 2.6rem);
+  }
+  h3 {
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+  }
+  p, li {
+    text-wrap: pretty;
+  }
+  a {
+    color: var(--color-wiese-dunkel);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in srgb, var(--color-wiese) 50%, transparent);
+  }
+  a:hover {
+    text-decoration-color: var(--color-wiese-dunkel);
+  }
+  /* Sichtbarer Fokus überall */
+  :focus-visible {
+    outline: 3px solid var(--color-himmel);
+    outline-offset: 3px;
+    border-radius: 0.25rem;
+  }
+  ::selection {
+    background: var(--color-sonne);
+    color: var(--color-erde);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100%;
+    z-index: 100;
+    padding: 0.75rem 1.25rem;
+    background: var(--color-erde);
+    color: var(--color-creme);
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+  .prose-hof {
+    max-width: 70ch;
+  }
+  .prose-hof > * + * {
+    margin-top: 1.1em;
+  }
+  .prose-hof h2 {
+    margin-top: 1.8em;
+  }
+  .prose-hof h3 {
+    margin-top: 1.5em;
+  }
+  .prose-hof ul {
+    list-style: disc;
+    padding-left: 1.4em;
+  }
+  .prose-hof li + li {
+    margin-top: 0.35em;
+  }
+  /* Vollbild-Menü mobil: Body nicht scrollen, solange es offen ist */
+  html[data-menue-offen] {
+    overflow: hidden;
+  }
+  summary.menue-knopf {
+    list-style: none;
+  }
+  summary.menue-knopf::-webkit-details-marker {
+    display: none;
+  }
+  details[open] > summary .icon-menue,
+  details:not([open]) > summary .icon-schliessen {
+    display: none;
+  }
+}

@@ -1,0 +1,25 @@
+---
+/**
+ * Leicht gewellter Übergang zwischen zwei Sektionen (zitiert die Haßberge).
+ * `nach` ist die Farbe der folgenden Sektion, die Welle liegt auf `von`.
+ * Maximal 2 pro Seite (konzept.md 2.3).
+ */
+interface Props {
+  von: 'creme' | 'stroh' | 'erde';
+  nach: 'creme' | 'stroh' | 'erde';
+  gespiegelt?: boolean;
+}
+const { von, nach, gespiegelt = false } = Astro.props;
+const bg = { creme: 'bg-creme', stroh: 'bg-stroh', erde: 'bg-erde' }[von];
+const fill = { creme: 'fill-creme', stroh: 'fill-stroh', erde: 'fill-erde' }[nach];
+---
+
+<div class:list={[bg, 'leading-none']} aria-hidden="true">
+  <svg
+    viewBox="0 0 1440 56"
+    preserveAspectRatio="none"
+    class:list={['block h-8 w-full sm:h-12', fill, gespiegelt && '-scale-x-100']}
+  >
+    <path d="M0 30 C 240 56 480 0 720 22 S 1200 56 1440 18 L1440 56 L0 56 Z"></path>
+  </svg>
+</div>

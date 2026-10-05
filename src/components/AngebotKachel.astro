@@ -1,0 +1,49 @@
+---
+/** Kachel für die Angebotsübersicht (Home + /unsere-angebote/): Foto, Leitfarbe, Teaser, Link. */
+import { Picture } from 'astro:assets';
+import Icon from './Icon.astro';
+
+interface Props {
+  href: string;
+  name: string;
+  teaser: string;
+  bild: ImageMetadata;
+  alt: string;
+  icon: string;
+  farbe: 'wiese' | 'sonne' | 'himmel';
+  buttonLabel?: string;
+  /** Überschriftsebene, je nach Kontext (nach H1 → 2, unter einer H2 → 3) */
+  ebene?: 2 | 3;
+}
+const { href, name, teaser, bild, alt, icon, farbe, buttonLabel = 'Jetzt entdecken', ebene = 3 } = Astro.props;
+const Titel = `h${ebene}` as 'h2' | 'h3';
+const rand = { wiese: 'border-wiese', sonne: 'border-sonne', himmel: 'border-himmel' }[farbe];
+const iconBg = { wiese: 'bg-wiese text-white', sonne: 'bg-sonne text-erde', himmel: 'bg-himmel text-erde' }[farbe];
+---
+
+<a
+  href={href}
+  class:list={[
+    'group flex flex-col overflow-hidden rounded-karte border-b-8 bg-white no-underline shadow-karte transition-[transform,box-shadow] hover:-translate-y-1 hover:shadow-karte-hover motion-reduce:hover:translate-y-0',
+    rand,
+  ]}
+>
+  <Picture
+    src={bild}
+    alt={alt}
+    formats={['avif', 'webp']}
+    width={640}
+    class="aspect-[4/3] w-full object-cover"
+  />
+  <div class="flex flex-1 flex-col p-6">
+    <div class="flex items-center gap-3">
+      <span class:list={['inline-flex rounded-full p-2', iconBg]}><Icon name={icon} class="size-7" /></span>
+      <Titel class="text-2xl">{name}</Titel>
+    </div>
+    <p class="mt-3 text-erde">{teaser}</p>
+    <span class="mt-5 inline-flex items-center gap-2 font-semibold text-wiese-dunkel">
+      {buttonLabel}
+      <Icon name="pfeil" class="size-5 transition-transform group-hover:translate-x-1 motion-reduce:group-hover:translate-x-0" />
+    </span>
+  </div>
+</a>

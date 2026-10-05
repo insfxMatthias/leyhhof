@@ -1,0 +1,13 @@
+---
+/** Sichtbares Preisschild in Sonne, Text in Erde (Kontrast). */
+interface Props {
+  label?: string;
+  preis: string;
+}
+const { label, preis } = Astro.props;
+---
+
+<p class="inline-flex items-baseline gap-2 rounded-full bg-sonne px-5 py-2 text-erde">
+  {label && <span class="text-sm font-bold uppercase tracking-wider">{label}</span>}
+  <span class="font-headline text-2xl font-bold">{preis}</span>
+</p>

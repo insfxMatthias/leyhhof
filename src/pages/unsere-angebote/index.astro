@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import AngebotKachel from '../../components/AngebotKachel.astro';
+
+const angebote = (await getCollection('angebote')).sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
+---
+
+<Base
+  title="Unsere Angebote | Erlebnisbauernhof Leyh"
+  description="Bauernhof, Ponys und Schulklassen: Bauernhofgeburtstage, Ponygeburtstage und Unterricht auf dem Bauernhof beim Erlebnisbauernhof Leyh in Losbergsgereuth."
+>
+  <section class="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14" aria-labelledby="angebote-titel">
+    <h1 id="angebote-titel">Unsere Angebote</h1>
+    <div class="mt-8 grid gap-6 md:grid-cols-3">
+      {angebote.map((a) => (
+        <AngebotKachel
+          href={`/unsere-angebote/${a.id}/`}
+          name={a.data.name}
+          teaser={a.data.teaser}
+          bild={a.data.bild.src}
+          alt={a.data.bild.alt}
+          icon={a.data.icon}
+          farbe={a.data.farbe}
+          ebene={2}
+        />
+      ))}
+    </div>
+  </section>
+</Base>

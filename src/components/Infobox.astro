@@ -1,0 +1,23 @@
+---
+/** „Was gibt es zu beachten?“ – fünf Punkte als Checkliste mit Icons (Daten: hof.json). */
+import hof from '../content/hof.json';
+import Icon from './Icon.astro';
+
+interface Props {
+  farbe: 'wiese' | 'sonne' | 'himmel';
+}
+const { farbe } = Astro.props;
+const iconFarbe = { wiese: 'bg-wiese text-white', sonne: 'bg-sonne text-erde', himmel: 'bg-himmel text-erde' }[farbe];
+---
+
+<section class="rounded-karte bg-stroh p-6 sm:p-8" aria-labelledby="beachten-titel">
+  <h2 id="beachten-titel" class="text-2xl sm:text-3xl">{hof.beachten.ueberschrift}</h2>
+  <ul class="mt-5 grid gap-4 sm:grid-cols-2">
+    {hof.beachten.punkte.map((p) => (
+      <li class="flex items-start gap-3">
+        <span class:list={['mt-0.5 inline-flex shrink-0 rounded-full p-2', iconFarbe]}><Icon name={p.icon} class="size-6" /></span>
+        <span class="pt-1.5 font-medium">{p.text}</span>
+      </li>
+    ))}
+  </ul>
+</section>

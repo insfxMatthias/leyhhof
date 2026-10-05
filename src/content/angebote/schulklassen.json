@@ -1,0 +1,39 @@
+{
+  "name": "Schulklassen",
+  "reihenfolge": 3,
+  "farbe": "himmel",
+  "icon": "schule",
+  "title": "Schulklassen - Unsere Angebote | Erlebnisbauernhof Leyh",
+  "description": "Unterricht auf dem Bauernhof: Im \"Klassenzimmer auf dem Bauernhof\" erfahren Kinder Wissenswertes rund um unsere Nahrungskette, die Landwirtschaft, Energiegewinnung etc. Kosten 160,- € für 4 Std. Schulklassenausflüge der 2., 3. und 4. Jahrgangsstufe von Grundschulklassen und alle Jahrgangsstufen der Förderschule sind kostenlos.",
+  "bild": {
+    "src": "../../images/angebot-schulklassen.jpg",
+    "alt": "Kinder im Gemüsegarten"
+  },
+  "teaser": "Im \"Klassenzimmer auf dem Bauernhof\" erfahren Kinder Wissenswertes rund um unsere Nahrungskette, die Landwirtschaft, Energiegewinnung etc.",
+  "h1": "Unterricht auf dem Bauernhof",
+  "einleitung": "Wir haben eine Auswahl an vielen verschiedenen Möglichkeiten, den Aufenthalt von Ihren Kindern unvergesslich zu machen.",
+  "angebote": [],
+  "beachten": false,
+  "abschnitte": {
+    "eintraege": [
+      {
+        "titel": "Unterricht auf dem Bauernhof",
+        "text": "Im \"Klassenzimmer auf dem Bauernhof\" erfahren Kinder Wissenswertes rund um unsere Nahrungskette, die Landwirtschaft, Energiegewinnung etc. Ein Vor- oder Nachmittag (ca. vier Stunden) findet unter einem Thema wie zum Beispiel „ Vom Getreide zum Brot\" oder „Von der Kuh zur Milch\" statt. Dieser Tag beinhaltet beispielsweise ein Kennenlernspiel, einen Rundgang auf dem Hof, das Erleben des Hofs mit allen Sinnen, Spielen oder einer Bauernhofrallye mit vielen verschiedenen Lernstationen. Verpflegung ist auf Wunsch gerne möglich!",
+        "preisLabel": "Kosten",
+        "preis": "160,- € für 4 Std."
+      },
+      {
+        "titel": "Zielgruppe und Kostenübernahme",
+        "text": "Wir freuen uns über jeden Besucher, ob alt oder jung, körperlich oder geistig eingeschränkt, Lebenshilfe-, Kindergarten- oder Schulkind, Förderklasse oder Behinderteneinrichtung! Schulklassenausflüge der 2., 3. und 4. Jahrgangsstufe von Grundschulklassen und alle Jahrgangsstufen der Förderschule sind kostenlos, die Kosten übernimmt der Staat!",
+        "stil": "himmel"
+      }
+    ]
+  },
+  "anmeldung": {
+    "ueberschrift": "Anmeldung bitte bei:",
+    "name": "Familie Leyh",
+    "telefon": "09531 8496",
+    "telefonLink": "+4995318496",
+    "email": "info@leyhhof.de"
+  }
+}

@@ -1,0 +1,61 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import hof from '../content/hof.json';
+
+const seite = await getEntry('seiten', 'kontakt');
+if (!seite) throw new Error('kontakt.md fehlt');
+const { Content } = await render(seite);
+
+const ziel = encodeURIComponent(`${hof.adresse.strasse}, ${hof.adresse.plz} ${hof.adresse.ort}`);
+const googleMaps = `https://www.google.com/maps/dir/?api=1&destination=${ziel}`;
+const appleKarten = `https://maps.apple.com/?daddr=${ziel}`;
+---
+
+<Base title={seite.data.title} description={seite.data.description}>
+  <section class="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14" aria-labelledby="kontakt-titel">
+    <h1 id="kontakt-titel">{seite.data.h1}</h1>
+    <div class="mt-8 grid gap-6 md:grid-cols-2">
+      <div class="flex flex-col gap-6">
+        <div class="rounded-karte border-l-8 border-himmel bg-himmel/15 p-6 sm:p-8">
+          <div class="prose-hof">
+            <Content />
+          </div>
+        </div>
+        <div class="rounded-karte bg-white p-6 shadow-karte sm:p-8">
+          <h2 class="text-2xl sm:text-3xl">Adresse</h2>
+          <address class="mt-4 flex items-start gap-4 not-italic leading-relaxed">
+            <span class="inline-flex shrink-0 rounded-full bg-wiese p-2 text-white"><Icon name="pin" class="size-7" /></span>
+            <span>
+              <strong class="font-headline text-xl">{hof.name}</strong><br />
+              {hof.adresse.strasse}<br />
+              {hof.adresse.plz} {hof.adresse.ort}<br />
+              Tel.: <a href={`tel:${hof.telefonLink}`}>{hof.telefon}</a>
+            </span>
+          </address>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <Button href={`tel:${hof.telefonLink}`} stil="mohn" icon="telefon" gross>Mit dem Handy anrufen</Button>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col rounded-karte bg-white p-3 shadow-karte">
+        <img
+          src="/karte.png"
+          width="1200"
+          height="800"
+          loading="lazy"
+          decoding="async"
+          alt={`Kartenausschnitt: Lage von ${hof.name} in ${hof.adresse.ort}, Ortsteil Losbergsgereuth`}
+          class="aspect-[3/2] w-full rounded-[calc(var(--radius-karte)-0.75rem)] object-cover"
+        />
+        <div class="flex flex-wrap gap-3 p-3 pt-4">
+          <Button href={googleMaps} stil="rahmen" icon="pfeil">Route in Google Maps öffnen</Button>
+          <Button href={appleKarten} stil="rahmen" icon="pfeil">In Apple Karten öffnen</Button>
+        </div>
+        <p class="px-3 pb-2 text-sm text-erde/80">Kartendaten: © OpenStreetMap-Mitwirkende (ODbL)</p>
+      </div>
+    </div>
+  </section>
+</Base>
