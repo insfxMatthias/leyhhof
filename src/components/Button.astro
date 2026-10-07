@@ -13,7 +13,8 @@ const { href, stil = 'wiese', icon, class: klasse = '', gross = false } = Astro.
 
 const stile = {
   wiese: 'bg-wiese-dunkel text-white hover:bg-wiese-tief',
-  mohn: 'bg-mohn-dunkel text-white hover:bg-[#a9381a]',
+  // Anrufen: Rot nur als Rahmen/Schrift, damit es neben Wiese und Sonne nicht dominiert
+  mohn: 'border-2 border-mohn-dunkel bg-white text-mohn-dunkel hover:bg-mohn/10',
   sonne: 'bg-sonne text-erde hover:bg-[#e3a812]',
   rahmen: 'border-2 border-wiese-dunkel text-wiese-dunkel hover:bg-wiese-dunkel/10',
 };
