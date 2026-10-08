@@ -61,13 +61,15 @@ Neues Foto: Datei ersetzen oder in der Content-Datei referenzieren, `npm run bui
 | `kinder-basteln.webp`, `ponyreiten.avif` | Karten Bauernhofgeburtstag / inkl. Ponyreiten |
 | `pony.avif`, `indianer-wald.avif`, `einhorn-pony.avif` | Karten Pferde-, Indianer-, Einhorngeburtstag |
 
+Logo: `src/images/leyhlogo-original.webp` ist die Quelle, `node scripts/logo.mjs src/images/leyhlogo-original.webp`
+erzeugt daraus `leyhlogo.png` (Header/Footer) sowie `public/favicon.png` und `public/apple-touch-icon.png` (Kuhkopf).
+
 Noch **Platzhalter** (erzeugt von `scripts/platzhalter.mjs`, Ersatz mit gleichem Dateinamen):
 
 | Datei | Motiv |
 |---|---|
 | `src/images/hero-buch.jpg` | Buch-Hero: Frau mit Blumenkorb |
 | `src/images/buchcover.jpg` | Buchcover „Meine Liebe zum Land“ (Rechte beim Verlag prüfen) |
-| `src/icons/logo.svg` + `public/favicon.svg` | Logo Kuh mit Sonnenblume (aktuell selbst gezeichnet) |
 | `public/karte.png` | Anfahrtskarte: `node scripts/karte.mjs` holt einen OpenStreetMap-Ausschnitt (braucht Internet) |
 
 Noch nicht vorhanden, aber im Konzept vorgesehen: Luftbild des Hofs und Traktor mit Ladewagen für
@@ -103,7 +105,7 @@ src/images/         Quellbilder, werden von astro:assets optimiert
 src/styles/         global.css – Design-Tokens (Farben, Fraunces) als Tailwind-Theme
 public/             robots.txt, favicon.svg, og.jpg, karte.png
 tests/              Playwright + axe
-scripts/            platzhalter.mjs, og.mjs, karte.mjs, lighthouse.mjs, screenshot.mjs
+scripts/            platzhalter.mjs, logo.mjs, og.mjs, karte.mjs, lighthouse.mjs, screenshot.mjs
 Caddyfile           Webserver inkl. 301-Weiterleitungen für /widerruf/ und /cookie-einstellungen/
 ```
 

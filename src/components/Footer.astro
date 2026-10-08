@@ -1,16 +1,16 @@
 ---
 import hof from '../content/hof.json';
 import Icon from './Icon.astro';
+import { Image } from 'astro:assets';
+import logo from '../images/leyhlogo.png';
 const jahr = new Date().getFullYear();
 ---
 
 <footer class="bg-erde text-creme">
   <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
     <div>
-      <p class="flex items-center gap-2 font-headline text-xl font-bold">
-        <Icon name="logo" class="size-10" />
-        {hof.name}
-      </p>
+      <Image src={logo} alt="Logo Leyh Hof – Erlebnisbauernhof" width={96} height={125} layout="fixed" format="webp" class="h-28 w-auto" />
+      <p class="mt-4 font-headline text-xl font-bold">{hof.name}</p>
       <address class="mt-4 not-italic leading-relaxed">
         {hof.adresse.strasse}<br />
         {hof.adresse.plz} {hof.adresse.ort}<br />
