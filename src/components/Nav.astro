@@ -17,9 +17,9 @@ const linkKlasse = (href: string) =>
 ---
 
 <header class="sticky top-0 z-40 border-b border-stroh bg-creme">
-  <div class="relative z-10 mx-auto flex h-[4.5rem] max-w-6xl items-center gap-2 px-4 sm:h-20 sm:px-6">
+  <div class="relative z-10 mx-auto flex h-16 max-w-6xl items-center gap-2 px-4 sm:h-[4.5rem] sm:px-6">
     <a href="/" class="flex items-center gap-2 no-underline" aria-label="Erlebnisbauernhof Leyh – zur Startseite">
-      <Image src={logo} alt="Logo Leyh Hof – Erlebnisbauernhof" width={64} height={84} layout="fixed" format="webp" loading="eager" class="h-14 w-auto shrink-0 sm:h-16" />
+      <Image src={logo} alt="Logo Leyh Hof – Erlebnisbauernhof" width={46} height={60} layout="fixed" format="webp" loading="eager" class="h-11 w-auto shrink-0 sm:h-[3.25rem]" />
     </a>
 
     <nav aria-label="Hauptnavigation" class="ml-auto hidden xl:block">
@@ -61,7 +61,7 @@ const linkKlasse = (href: string) =>
         <Icon name="menue" class="icon-menue size-7" />
         <Icon name="schliessen" class="icon-schliessen size-7" />
       </summary>
-      <nav aria-label="Menü" class="fixed inset-0 z-[-1] overflow-y-auto bg-creme pt-[4.5rem] sm:pt-20">
+      <nav aria-label="Menü" class="fixed inset-0 z-[-1] overflow-y-auto bg-creme pt-16 sm:pt-[4.5rem]">
         <ul class="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-6 text-xl sm:px-6">
           {hof.navigation.map((n) => (
             <li>
