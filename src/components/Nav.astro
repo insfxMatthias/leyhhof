@@ -2,11 +2,12 @@
 import { getCollection } from 'astro:content';
 import hof from '../content/hof.json';
 import Icon from './Icon.astro';
+import { url, pfadOhneBase } from '../lib/url';
 import { Image } from 'astro:assets';
 import logo from '../images/leyhlogo.png';
 
 const angebote = (await getCollection('angebote')).sort((a, b) => a.data.reihenfolge - b.data.reihenfolge);
-const pfad = Astro.url.pathname;
+const pfad = pfadOhneBase(Astro.url.pathname);
 const aktiv = (href: string) => (href === '/' ? pfad === '/' : pfad.startsWith(href));
 
 const linkKlasse = (href: string) =>
@@ -18,7 +19,7 @@ const linkKlasse = (href: string) =>
 
 <header class="sticky top-0 z-40 border-b border-stroh bg-creme">
   <div class="relative z-10 mx-auto flex h-16 max-w-6xl items-center gap-2 px-4 sm:h-[4.5rem] sm:px-6">
-    <a href="/" class="flex items-center gap-2 no-underline" aria-label="Erlebnisbauernhof Leyh – zur Startseite">
+    <a href={url('/')} class="flex items-center gap-2 no-underline" aria-label="Erlebnisbauernhof Leyh – zur Startseite">
       <Image src={logo} alt="Logo Leyh Hof – Erlebnisbauernhof" width={46} height={60} layout="fixed" format="webp" loading="eager" class="h-11 w-auto shrink-0 sm:h-[3.25rem]" />
     </a>
 
@@ -26,7 +27,7 @@ const linkKlasse = (href: string) =>
       <ul class="flex items-center gap-0.5 text-base">
         {hof.navigation.map((n) => (
           <li>
-            <a href={n.href} class={linkKlasse(n.href)} aria-current={aktiv(n.href) ? 'page' : undefined}>
+            <a href={url(n.href)} class={linkKlasse(n.href)} aria-current={aktiv(n.href) ? 'page' : undefined}>
               {n.label}
             </a>
           </li>
@@ -66,7 +67,7 @@ const linkKlasse = (href: string) =>
           {hof.navigation.map((n) => (
             <li>
               <a
-                href={n.href}
+                href={url(n.href)}
                 class:list={['block rounded-2xl px-4 py-3 font-semibold no-underline', aktiv(n.href) ? 'bg-stroh text-wiese-dunkel' : 'text-erde']}
                 aria-current={aktiv(n.href) ? 'page' : undefined}
               >
@@ -77,7 +78,7 @@ const linkKlasse = (href: string) =>
                   {angebote.map((a) => (
                     <li>
                       <a
-                        href={`/unsere-angebote/${a.id}/`}
+                        href={url(`/unsere-angebote/${a.id}/`)}
                         class:list={['flex items-center gap-3 rounded-2xl px-4 py-2.5 text-lg no-underline', aktiv(`/unsere-angebote/${a.id}/`) ? 'bg-stroh text-wiese-dunkel' : 'text-erde']}
                         aria-current={aktiv(`/unsere-angebote/${a.id}/`) ? 'page' : undefined}
                       >

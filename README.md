@@ -16,6 +16,25 @@ sudo systemctl reload caddy  # HTTPS kommt automatisch
 Automatisch: `.github/workflows/deploy.yml` baut, testet und deployt bei jedem Push auf `main`.
 Dafür im Repo die Secrets `DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_SSH_KEY` (und optional `DEPLOY_PATH`) anlegen.
 
+## Präsentation unter anderer Adresse oder in einem Unterordner
+
+Die Seite lässt sich für jede Domain und jeden Unterordner bauen, z. B. für eine Vorschau
+unter `https://beispiel.de/leyhhof/`:
+
+```sh
+node scripts/paket.mjs --site https://beispiel.de --base /leyhhof
+```
+
+Ergebnis ist `leyhhof-website-leyhhof.zip`: den Inhalt von `leyhhof-website/` in den Unterordner
+`leyhhof` des Webspace laden (inkl. versteckter `.htaccess`). Alle Links, Bilder, Schriften,
+Weiterleitungen, Canonical-URLs und die Sitemap tragen dann den Unterordner. Eine solche Kopie
+ist automatisch für Suchmaschinen gesperrt (`noindex`, `robots.txt`, `X-Robots-Tag`), damit die
+Präsentation nicht neben leyhhof.de im Google-Index landet; `--index` hebt das auf.
+
+Ohne Optionen baut `node scripts/paket.mjs` das Live-Paket für `https://leyhhof.de/`.
+Intern: `SITE`, `BASE` und `NOINDEX` sind Umgebungsvariablen für `astro build`; interne Links
+laufen über `src/lib/url.ts`, damit der Basis-Pfad überall ankommt.
+
 ## Entwickeln
 
 ```sh
@@ -90,8 +109,8 @@ Alt-Texte stehen bei den Bildern in den Content-Dateien.
   Löschfrist der Logfiles (14 Tage) muss zur Caddy-Konfiguration passen.
 - **Geo-Koordinaten** in `src/content/hof.json` (ca. 50.08 N, 10.73 O) mit Karte prüfen, dann `node scripts/karte.mjs`.
 - **Schwarzer Block auf der alten Startseite** (Video oder Karte?) im Jimdo-Backend prüfen; ist nicht übernommen.
-- **Kanonische Domain**: aktuell `https://leyhhof.de` (www → ohne www). Bei Änderung `SITE` in `astro.config.mjs`,
-  `public/robots.txt` und das Caddyfile anpassen.
+- **Kanonische Domain**: aktuell `https://leyhhof.de` (www → ohne www). Bei Änderung `SITE` in `astro.config.mjs`
+  und das Caddyfile anpassen (`robots.txt` wird daraus erzeugt).
 
 ## Struktur
 
@@ -105,7 +124,7 @@ src/images/         Quellbilder, werden von astro:assets optimiert
 src/styles/         global.css – Design-Tokens (Farben, Fraunces) als Tailwind-Theme
 public/             robots.txt, favicon.svg, og.jpg, karte.png
 tests/              Playwright + axe
-scripts/            platzhalter.mjs, logo.mjs, og.mjs, karte.mjs, lighthouse.mjs, screenshot.mjs
+scripts/            paket.mjs (ZIP für Live/Präsentation), platzhalter.mjs, logo.mjs, og.mjs, karte.mjs, lighthouse.mjs, screenshot.mjs, vorschau.mjs
 Caddyfile           Webserver inkl. 301-Weiterleitungen für /widerruf/ und /cookie-einstellungen/
 ```
 

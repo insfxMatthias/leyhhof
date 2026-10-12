@@ -1,6 +1,7 @@
 ---
 /** Pillen-Button als Link. stil: wiese (primär) · mohn (Anrufen) · sonne · rahmen */
 import Icon from './Icon.astro';
+import { url } from '../lib/url';
 
 interface Props {
   href: string;
@@ -22,7 +23,7 @@ const extern = /^https?:\/\//.test(href);
 ---
 
 <a
-  href={href}
+  href={url(href)}
   rel={extern ? 'noopener' : undefined}
   class:list={[
     'inline-flex items-center justify-center gap-2 rounded-full font-semibold no-underline transition-colors',

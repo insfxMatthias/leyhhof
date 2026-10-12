@@ -4,10 +4,17 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 // Kanonische Adresse der Seite. Bei www-Variante hier und im Caddyfile anpassen.
-export const SITE = 'https://leyhhof.de';
+// Für eine Präsentation unter anderer Adresse/Unterordner per Umgebung überschreiben:
+//   SITE=https://beispiel.de BASE=/leyhhof NOINDEX=1 npm run build
+// (oder einfacher: node scripts/paket.mjs --site https://beispiel.de --base /leyhhof)
+export const SITE = process.env.SITE ?? 'https://leyhhof.de';
+const BASE = process.env.BASE ?? '/';
+// Ziel-Pfade für Weiterleitungen mit Basis-Pfad (Astro ergänzt ihn dort nicht selbst)
+const mitBase = (pfad) => `${BASE.replace(/\/+$/, '')}${pfad}`;
 
 export default defineConfig({
   site: SITE,
+  base: BASE,
   trailingSlash: 'always',
   build: {
     format: 'directory',
@@ -23,8 +30,8 @@ export default defineConfig({
   // Alte Jimdo-URLs, die es nicht mehr gibt. Caddy liefert echte 301er,
   // das hier ist nur der Fallback (Meta-Refresh) für andere Webserver.
   redirects: {
-    '/widerruf/': '/kontakt/',
-    '/cookie-einstellungen/': '/datenschutz/',
+    '/widerruf/': mitBase('/kontakt/'),
+    '/cookie-einstellungen/': mitBase('/datenschutz/'),
   },
   integrations: [
     sitemap({
@@ -33,5 +40,8 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    define: {
+      'import.meta.env.NOINDEX': JSON.stringify(process.env.NOINDEX ?? ''),
+    },
   },
 });

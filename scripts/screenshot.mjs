@@ -7,7 +7,7 @@ const [,, pfad = '/', name = 'home'] = process.argv;
 const out = process.env.OUT ?? 'screenshots';
 import { mkdirSync } from 'node:fs';
 mkdirSync(out, { recursive: true });
-const srv = spawn('npx', ['astro', 'preview', '--port', '4321'], { stdio: 'ignore' });
+const srv = spawn('npx', ['astro', 'preview', '--port', '4321', '--ignore-lock'], { stdio: 'ignore' });
 await new Promise(r => setTimeout(r, 5000));
 const browser = await chromium.launch({ executablePath: process.env.PW_CHROMIUM_PATH });
 for (const [vp, suffix] of [[{ width: 1440, height: 900 }, 'desktop'], [{ width: 390, height: 844 }, 'mobil']]) {

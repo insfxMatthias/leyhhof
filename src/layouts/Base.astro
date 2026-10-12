@@ -4,25 +4,28 @@ import frauncesUrl from '@fontsource-variable/fraunces/files/fraunces-latin-stan
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import hof from '../content/hof.json';
+import { url, absolut, pfadOhneBase } from '../lib/url';
 
 interface Props {
   title: string;
   description: string;
 }
 const { title, description } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogBild = new URL('/og.jpg', Astro.site);
+const canonical = absolut(pfadOhneBase(Astro.url.pathname), Astro.site);
+const ogBild = absolut('/og.jpg', Astro.site);
+// Präsentations-Kopien (anderer Server, Unterordner) sollen nicht bei Google landen
+const noindex = import.meta.env.NOINDEX === '1' || import.meta.env.NOINDEX === 'true';
 
 // LocalBusiness-Daten für Google (konzept.md 4.3)
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  '@id': new URL('/#hof', Astro.site).href,
+  '@id': absolut('/#hof', Astro.site),
   name: hof.name,
-  url: Astro.site?.href,
+  url: absolut('/', Astro.site),
   telephone: hof.telefonLink,
   email: hof.email,
-  image: ogBild.href,
+  image: ogBild,
   address: {
     '@type': 'PostalAddress',
     streetAddress: hof.adresse.strasse,
@@ -44,9 +47,10 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.png" type="image/png" sizes="96x96" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" href={url('/favicon.png')} type="image/png" sizes="96x96" />
+    <link rel="apple-touch-icon" href={url('/apple-touch-icon.png')} />
+    <link rel="sitemap" href={url('/sitemap-index.xml')} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="preload" as="font" type="font/woff2" href={frauncesUrl} crossorigin />
     <meta name="theme-color" content="#fff8ec" />
     <meta property="og:type" content="website" />

@@ -9,6 +9,7 @@ import Zahlen from '../components/Zahlen.astro';
 import WellenDivider from '../components/WellenDivider.astro';
 import AngebotKachel from '../components/AngebotKachel.astro';
 import hof from '../content/hof.json';
+import { url } from '../lib/url';
 
 const home = await getEntry('seiten', 'home');
 if (!home || !home.data.hero || !home.data.karten || !home.data.zahlen) throw new Error('home.md unvollständig');
@@ -36,7 +37,7 @@ const angebote = (await getCollection('angebote')).sort((a, b) => a.data.reihenf
     <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
       <div class="flex flex-wrap items-end justify-between gap-4">
         <h2 id="angebote-titel">Unsere Angebote</h2>
-        <a href="/unsere-angebote/" class="font-semibold">Alle Angebote</a>
+        <a href={url('/unsere-angebote/')} class="font-semibold">Alle Angebote</a>
       </div>
       <div class="mt-8 grid gap-6 md:grid-cols-3">
         {angebote.map((a) => (

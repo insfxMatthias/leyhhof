@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://leyhhof.de/sitemap-index.xml

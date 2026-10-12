@@ -10,7 +10,7 @@ const SEITEN = process.argv[2]
   : ['/', '/unsere-angebote/', '/unsere-angebote/bauernhof/', '/unsere-angebote/ponys/', '/unsere-angebote/schulklassen/', '/moderne-landwirtschaft/', '/mein-buch/', '/kontakt/', '/impressum/', '/datenschutz/'];
 const ZIEL = 95;
 
-const srv = spawn('npx', ['astro', 'preview', '--port', '4321'], { stdio: 'ignore' });
+const srv = spawn('npx', ['astro', 'preview', '--port', '4321', '--ignore-lock'], { stdio: 'ignore' });
 await new Promise((r) => setTimeout(r, 2500));
 
 const lighthouse = (await import('lighthouse')).default;

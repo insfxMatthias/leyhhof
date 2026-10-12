@@ -19,7 +19,8 @@ export default defineConfig({
     { name: 'mobil', use: { ...devices['Pixel 7'], launchOptions: { executablePath } } },
   ],
   webServer: {
-    command: 'npm run preview -- --port 4321',
+    // --ignore-lock: Astro 7 würde sonst einen Hintergrund-Daemon starten, Playwright sähe „exited early“
+    command: 'npx astro preview --port 4321 --ignore-lock',
     url: 'http://localhost:4321/',
     reuseExistingServer: !process.env.CI,
     timeout: 30_000,

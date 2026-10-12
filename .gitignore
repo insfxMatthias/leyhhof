@@ -7,4 +7,5 @@ lighthouse/
 .DS_Store
 screenshots/
 vorschau/
-leyhhof-website.zip
+leyhhof-website*.zip
+paket-tmp/

@@ -2,6 +2,7 @@
 /** Kachel für die Angebotsübersicht (Home + /unsere-angebote/): Foto, Leitfarbe, Teaser, Link. */
 import Foto from './Foto.astro';
 import Icon from './Icon.astro';
+import { url } from '../lib/url';
 
 interface Props {
   href: string;
@@ -22,7 +23,7 @@ const iconBg = { wiese: 'bg-wiese text-white', sonne: 'bg-sonne text-erde', himm
 ---
 
 <a
-  href={href}
+  href={url(href)}
   class:list={[
     'group flex flex-col overflow-hidden rounded-karte border-b-8 bg-white no-underline shadow-karte transition-[transform,box-shadow] hover:-translate-y-1 hover:shadow-karte-hover motion-reduce:hover:translate-y-0',
     rand,
